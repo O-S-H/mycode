@@ -20,9 +20,27 @@ public class BulletSpawner : MonoBehaviour
         target = FindObjectOfType<PlayController>().transform;
     }
 
-    
+
     void Update()
-    {
+    { 
+        timeAfterspwn += Time.deltaTime;
+        if (timeAfterspwn >= spawnRate)
+        {
+            timeAfterspwn = 0f;
+
+
+            GameObject bullet
+                = Instantiate(bulletprefab, transform.position, transform.rotation);
+            bullet.transform.LookAt(target);
+        }
+
+
+
+
+
+
+
+
+    }       
         
-    }
 }
