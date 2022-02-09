@@ -25,10 +25,24 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(!isGameover)
+        {
+            surviceTime += Time.deltaTime;
+            timeText.text = "Time :" + (int)surviceTime;
+
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.R)) ;
+            SceneManager.LoadScene("SampleScene");
+
+
+        }
     }
     public void EndGame()
     {
+        isGameover = true;
+        gameoverText.SetActive(true);
 
     }
 }
