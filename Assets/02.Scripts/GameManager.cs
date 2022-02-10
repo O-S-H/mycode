@@ -10,13 +10,13 @@ public class GameManager : MonoBehaviour
     public Text timeText; //생존 시간을 표시할 텍스트 컴포넌트
     public Text recordText; // 최고기록을 표시할 텍스트 컴포넌트
 
-    private float surviceTime;
+    private float surviveTime ;
     private bool isGameover;
 
    
     void Start()
     {
-        surviceTime = 0;
+        surviveTime = 0;
         isGameover = false;
 
 
@@ -27,13 +27,13 @@ public class GameManager : MonoBehaviour
     {
         if(!isGameover)
         {
-            surviceTime += Time.deltaTime;
-            timeText.text = "Time :" + (int)surviceTime;
+            surviveTime += Time.deltaTime;
+            timeText.text = "Time :" + (int)surviveTime;
 
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.R)) ;
+            if (Input.GetKeyDown(KeyCode.R)) 
             SceneManager.LoadScene("SampleScene");
 
 
@@ -44,5 +44,24 @@ public class GameManager : MonoBehaviour
         isGameover = true;
         gameoverText.SetActive(true);
 
+
+
+        float bestTime = PlayerPrefs.GetFloat("BestTime");
+
+        if (surviveTime < bestTime)
+        {
+            bestTime = surviveTime;
+            PlayerPrefs.SetFloat("BestTime", bestTime);
+
+        }
+        recordText.text = "BestTime : " +(int) bestTime; 
+
+
     }
+   
+
+   
+    
+   
+
 }
